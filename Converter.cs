@@ -36,7 +36,12 @@ namespace ConverterLibrary
             decimal bmi = 0;
             try
             {
-                bmi = metric_weight / (metric_height * metric_height);
+                if (metric_height > 0.0) {
+                    bmi = metric_weight / (metric_height * metric_height);
+                }
+                else {
+                    Throw New Exception("Divide by Zero");   
+                }
             }
             catch (Exception ex)
             {
@@ -69,7 +74,8 @@ namespace ConverterLibrary
 
         public Converter()
         {
-
+            From = MeasurementSystem.Metric;
+            To = MeasurementSystem.British;
         }
     }
 }
